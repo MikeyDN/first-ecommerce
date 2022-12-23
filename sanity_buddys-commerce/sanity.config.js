@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'buddys-commerce',
   basePath: '/studio',
 
-  projectId: 'jntrlq2c',
+  projectId: '1u3avr4h',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],
