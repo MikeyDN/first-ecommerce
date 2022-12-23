@@ -14,7 +14,7 @@ function Home() {
       setProducts(result)
     }
     fetchData()
-  })
+  }, [])
   return (
     <>
       <Head>
