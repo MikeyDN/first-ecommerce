@@ -1,16 +1,16 @@
 export default {
     name: 'product',
-    title: 'Product',
+    title: 'Products',
     type: 'document',
     fields: [
         {
             name: 'image',
             title: 'Image',
             type: 'array',
-            of: [{ type: 'image' }],
-            options: {
+            of: [{ type: 'image', options: {
                 hotspot: true,
-            }
+            } }],
+            
         },
         {
             name: 'name',
@@ -32,9 +32,22 @@ export default {
             type: 'number'
         },
         {
-            name: 'details',
-            title: 'Details',
-            type: 'string'
+            name: 'categories',
+            type: 'array',
+            title: 'Categories',
+            of: [
+                {
+                    title: 'Category',
+                    name: 'category',
+                    type: 'reference',
+                    to: [{ type: 'category' }]
+                }
+            ]
+        },
+        {
+            name: 'description',
+            title: 'Description',
+            type: 'text'
         }
         
 

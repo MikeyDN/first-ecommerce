@@ -6,6 +6,7 @@ import {schemaTypes} from './schemas'
 export default defineConfig({
   name: 'default',
   title: 'buddys-commerce',
+  basePath: '/studio',
 
   projectId: 'jntrlq2c',
   dataset: 'production',
@@ -16,3 +17,16 @@ export default defineConfig({
     types: schemaTypes,
   },
 })
+// export default defineConfig({
+//   name: 'default',
+//   title: 'buddys-commerce',
+
+//   projectId: 'jntrlq2c',
+//   dataset: 'production',
+
+//   plugins: [deskTool(), visionTool()],
+
+//   schema: {
+//     types: schemaTypes,
+//   },
+// })

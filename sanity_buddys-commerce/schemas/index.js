@@ -1,4 +1,5 @@
-import banner from './banner'
+import promoted from './promoted'
 import product from './product'
+import category from './category'
 
-export const schemaTypes = [banner, product]
+export const schemaTypes = [promoted, product, category]
