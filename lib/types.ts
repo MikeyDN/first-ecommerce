@@ -18,3 +18,10 @@ export type Image = {
     width: number
   }
 }
+export type Category = {
+  name: string,
+  slug: {
+    current: string,
+    _type: string
+  }
+}
