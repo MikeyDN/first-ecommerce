@@ -6,7 +6,7 @@ function Footer(){
             <div className="container">
                 <div className="row">
                 <div className="col-md-12">
-                    <div className="logo"><img src="assets/images/header-logo.png" alt="website template image" /></div>
+                    <div className="logo"><img src="/assets/images/header-logo.png" alt="website template image" /></div>
                 </div>
                 <div className="col-md-12">
                     <div className="footer-menu">
