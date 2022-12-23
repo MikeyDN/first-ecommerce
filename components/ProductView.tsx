@@ -1,4 +1,5 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import Link from "next/link";
 import { urlFor } from '../lib/client';
 import { Product } from '../lib/types';
@@ -16,17 +17,19 @@ function ProductView(props: productViewProps){
     return (
         <div className="product-box">
                 <Link href='/'>
-                    <img src={urlFor(props.product.image[0]).width(400).height(400).fit('scale').url()} alt={props.product.name} />
+                    <img src={urlFor(props.product.image[0]).width(300).height(300).fit('scale').url()} alt={props.product.name} />
                 </Link>
                 <div className="product-details">
                     <Link href='/'>
                         <h3 className="product-title">{props.product.name}</h3>
                     </Link>
                     <p className="product-description">{props.product.description}</p>
-                    <p className="product-price">${props.product.price}</p>
-                    <button className="product-button">
-                        <FontAwesomeIcon icon={{ prefix: "fas", iconName: "shopping-cart" }} />
-                    </button>
+                    <Container className="price">
+                        <p className="product-price">${props.product.price}</p>
+                        <button className="product-button">
+                            <FontAwesomeIcon icon={{ prefix: "fas", iconName: "shopping-cart" }} />
+                        </button>
+                    </Container>
                 </div>
             </div>
     );
