@@ -1,7 +1,10 @@
 export type Product = {
   name: string,
   image: Image[],
-  slug: string,
+  slug: {
+    current: string,
+    _type: string
+  },
   price: number,
   categories: string[],
   description: string
