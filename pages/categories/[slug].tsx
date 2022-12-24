@@ -31,7 +31,11 @@ function CategoryView() {
       <Head>
         <title>Buddy's e-Shop</title>
       </Head>
-      <h1>{categoryName}</h1>
+      
+      <div className='content-title'>
+        <h1>{categoryName}</h1>
+      </div>
+
       <div className="product-list">
         {products.map((product: Product, key: number) => (
           <ProductView product = { product } key={key}/>
