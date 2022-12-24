@@ -13,14 +13,16 @@ type productViewProps = {
 
 function ProductView(props: productViewProps){
     const [isLoading, setIsLoading] = useState(true);
+    const productUrl = `/products/${props.product.slug.current}`
+    const imageUrl = urlFor(props.product.image[0]).width(300).height(300).fit('scale').url()
     
     return (
         <div className="product-box">
-                <Link href='/'>
-                    <img src={urlFor(props.product.image[0]).width(300).height(300).fit('scale').url()} alt={props.product.name} />
+                <Link href={productUrl}>
+                    <img src={imageUrl} alt={props.product.name} />
                 </Link>
                 <div className="product-details">
-                    <Link href='/'>
+                <Link href={productUrl}>
                         <h3 className="product-title">{props.product.name}</h3>
                     </Link>
                     <p className="product-description">{props.product.description}</p>
