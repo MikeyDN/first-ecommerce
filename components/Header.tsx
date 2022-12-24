@@ -39,11 +39,12 @@ function Header() {
         <>
             <Navbar bg='dark' variant='dark' expand='lg'>
                 <Container>
-                    <Navbar.Brand className="navbar-brand" href="/"><img src="/assets/images/header-logo.png" alt="website template image" /></Navbar.Brand>
+                    <Navbar.Brand href="/"><img src="/assets/images/buddys-logo.png" alt="website template image" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbarResponsive' className='navbar-toggler' />
                     <Navbar.Collapse id='navbarResponsive'>
                         <Nav className='ml-auto'>
                             <Nav.Link href='/'>Home</Nav.Link>
+                            <Nav.Link href='/products/all'>Products</Nav.Link>
                             <NavDropdown title='Categories' id='nav-dropdown'>
                                 {
                                     categories.map((category: Category, key : number) => (

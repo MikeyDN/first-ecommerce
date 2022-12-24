@@ -9,21 +9,11 @@ export default function Document() {
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" />
-
       </Head>
-          <body>
-          <div id="pre-header">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <span>Suspendisse laoreet magna vel diam lobortis imperdiet</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <body>
         <Main />
         <NextScript />
-      </body>
+        </body>
     </Html>
   )
 }

@@ -28,3 +28,10 @@ export type Category = {
     _type: string
   }
 }
+
+export type Promoted = {
+  smallTitle: string,
+  title: string,
+  product: Product,
+  image: Image
+}

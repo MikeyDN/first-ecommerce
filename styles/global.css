@@ -22,9 +22,12 @@
 }
 
 .product-title {
-    font-size: x-large;
+    font-size: 26px;
     text-align: center;
 }
+
+
+
 
 .product-box {
     display: flex;
@@ -52,6 +55,9 @@
     justify-content: space-between;
 }
 
+.product-price {
+    font-size: x-large;
+}
 .content-title {
     width: fit-content;
     margin: auto;
@@ -64,6 +70,121 @@
     margin: auto;
 }
 
-.product-display img {
-    
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+.loading-icon {
+    margin: auto;
+    margin-top: 10vmin;
+    margin-bottom: 10vmin;
+    width: 100px; /* Set the width of the container */
+    height: 100px; /* Set the height of the container */
+}
+  
+.spinner {
+    border: 10px solid #f3f3f3; /* Add a border */
+    border-radius: 50%; /* Make the spinner rounded */
+    border-top: 10px solid #3498db; /* Add a color to the spinner */
+    width: 100px; /* Set the width of the spinner */
+    height: 100px; /* Set the height of the spinner */
+    animation: spin 1s linear infinite; /* Apply the spinner animation */
+}
+
+
+.nav-link {
+    margin: 0px 12px;
+}
+
+.featured {
+    display: flex;
+    width: 50%;
+    height: 300px;
+    align-items: center;
+    border: 2px solid greenyellow;
+    border-radius: 20px;
+    background-color: rgb(183, 216, 156);
+    margin-top: 100px;
+    justify-content: space-around;
+}
+
+.featured-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featured-image {
+    position: relative;
+    top: -35px;
+
+}
+
+.small-title{
+    font-size: 3vw;
+    color: wheat;
+    text-align: center;
+}
+
+.mid-title {
+    font-size: 5vw;
+    color: green;
+    text-align: center;
+}
+
+.navbar-brand img {
+    width: 80px;
+    margin-top: -15px;
+}
+
+.navbar .container {
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+
+.bg-dark {
+	background-color: #fff!important;
+	border-bottom: 1px solid #eee;
+    padding-bottom: 0;
+}
+  
+
+@media only screen and (max-width: 991.8px) {
+    .product-list {
+        display: flex;
+        width: auto;
+    }
+    .product-box {
+        display:flex;
+        flex-direction: row;
+        height: fit-content;
+        width: 100%;
+    }
+
+    .product-box img {
+        max-width: 140px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .navbar .container {
+        align-items: center;
+        flex-direction: row;
+    }
+
 }
