@@ -32,7 +32,7 @@
     width: 200px;
     flex-direction: column;
     justify-content: space-between;
-    margin: 10px;
+    margin: 8px 5px;
     border: 1px solid lightgray;
 }
 
@@ -50,4 +50,20 @@
 .price {
     display: flex;
     justify-content: space-between;
+}
+
+.content-title {
+    width: fit-content;
+    margin: auto;
+    color: steelblue;
+}
+
+.product-display {
+    width: 80%;
+    border: 1px solid lightgray;
+    margin: auto;
+}
+
+.product-display img {
+    
 }
