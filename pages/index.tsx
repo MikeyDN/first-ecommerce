@@ -20,7 +20,9 @@ function Home() {
       <Head>
         <title>Buddy's e-Shop</title>
       </Head>
-      <h1>Product List</h1>
+      <div className='content-title'>
+        <h1>Product List</h1>
+      </div>
       <div className="product-list">
         {products.map((product: Product) => (
           <ProductView product = { product } />
