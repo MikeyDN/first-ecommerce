@@ -24,9 +24,10 @@ function ProductView(props: productViewProps){
                 <Link href={productUrl}>
                         <h3 className="product-title">{props.product.name}</h3>
                     </Link>
-                    <p className="product-description">{props.product.description}</p>
+                    
                     <Container className="price">
-                        <p className="product-price">${props.product.price}</p>
+                        <div className="product-price">${props.product.price}</div>
+                        <div className="product-description">{props.product.description}</div>
                         <button className="product-button">
                             <FontAwesomeIcon icon={{ prefix: "fas", iconName: "shopping-cart" }} />
                         </button>

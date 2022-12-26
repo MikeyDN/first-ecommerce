@@ -21,7 +21,7 @@ const allProducts = () => {
 
     return (
         <div className="product-list">
-            {products.map((product: Product) => (
+            {products.map((product: Product, index: number) => (
               <ProductView product = { product } />
             ))}
         </div>

@@ -3,6 +3,7 @@ import { Product } from '../../lib/types';
 import { client, urlFor } from '../../lib/client';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { Carousel } from 'react-bootstrap';
 
 function ProductDisplay() {
     const [product, setProduct] = useState<Product>()
@@ -34,6 +35,8 @@ function ProductDisplay() {
 
         <div className="product-display">
             <img src={urlFor(product.image[0]).width(300).height(300).url()} alt="" />
+            <div className="product-details">
+            </div>
         </div>
         </>
         )

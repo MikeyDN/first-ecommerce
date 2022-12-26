@@ -39,8 +39,8 @@ function Header() {
         <>
             <Navbar bg='dark' variant='dark' expand='lg'>
                 <Container>
-                    <Navbar.Brand href="/"><img src="/assets/images/buddys-logo.png" alt="website template image" /></Navbar.Brand>
-                    <Navbar.Toggle aria-controls='navbarResponsive' className='navbar-toggler' />
+                    <Navbar.Brand href="/"><img src="/assets/images/buddys-logo.png" className="logo" alt="website template image" /></Navbar.Brand>
+                    <Navbar.Toggle className='navbar-toggler' />
                     <Navbar.Collapse id='navbarResponsive'>
                         <Nav className='ml-auto'>
                             <Nav.Link href='/'>Home</Nav.Link>
