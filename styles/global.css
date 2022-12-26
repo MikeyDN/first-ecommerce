@@ -158,6 +158,9 @@
     padding-bottom: 0;
 }
   
+.product-description {
+    display: none;
+}
 
 @media only screen and (max-width: 991.8px) {
     .product-list {
@@ -187,4 +190,18 @@
         flex-direction: row;
     }
 
+    .product-description {
+        display: block;
+        margin: auto;
+        overflow-y: auto;
+        width: 80%;
+        height: 60%;
+        scroll-behavior: smooth;
+        border: 1px solid lightgray;
+        padding-left: 16px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
 }
+
