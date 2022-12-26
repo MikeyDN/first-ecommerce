@@ -12,7 +12,6 @@ type productViewProps = {
 }
 
 function ProductView(props: productViewProps){
-    const [isLoading, setIsLoading] = useState(true);
     const productUrl = `/products/${props.product.slug.current}`
     const imageUrl = urlFor(props.product.image[0]).width(300).height(300).fit('scale').url()
     
