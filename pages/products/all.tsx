@@ -5,7 +5,7 @@ import LoadingIcon from '../../components/LoadingIcon';
 import ProductView from '../../components/ProductView';
 
 const allProducts = () => {
-    const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<Product[]|null>(null)
     
     useEffect(() => {
         const fetchData = async () => {
@@ -17,7 +17,7 @@ const allProducts = () => {
         fetchData()
     }, [])
 
-    if (products.length == 0) return <LoadingIcon />
+    if (products == null) return <LoadingIcon />
 
     return (
         <div className="product-list">
