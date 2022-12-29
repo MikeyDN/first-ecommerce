@@ -1,19 +1,31 @@
 import { useState } from 'react';
 import { Image } from '../lib/types';
 import { urlFor } from '../lib/client';
+import { MinusToken } from 'typescript';
 
 type ImageCarouselProps = {
     images: Image[],
     alt: string,
-    width: number
+    width: number,
+    height: number
+}
+
+const getImageUrls = (images: Image[], width: number, height: number) => {
+    return images.map(image => {
+        return urlFor(image).width(width).height(height).url();
+    })
 }
 
 // Carousel component
 function Carousel(props: ImageCarouselProps) {
     const [currentImage, setCurrentImage] = useState<number>(0);
-    const [images, setImages] = useState<Image[]>(props.images);
     const [alt, setAlt] = useState<string>(props.alt);
-    const [width, setWidth] = useState<number>(200);
+    const [width, setWidth] = useState<number>(props.width);
+    const [height, setHeight] = useState<number>(props.height);
+    const [images, setImages] = useState<string[]>(getImageUrls(props.images, height, width));
+
+    
+
 
     const nextImage = () => {
         if (currentImage < images.length - 1) {
@@ -34,11 +46,13 @@ function Carousel(props: ImageCarouselProps) {
     return (
         <div className="carousel">
             <div className="carousel-image">
-                <img src={urlFor(images[currentImage]).width(width).url()} alt={alt} />
+                {/* <span className="carousel-prev" onClick={previousImage}>Previous</span> */}
+                <img src={urlFor(images[currentImage]).width(width).height(height).url()} alt={alt} />
+                {/* <span className="carousel-next" onClick={nextImage}>Next</span> */}
             </div>
             <div className="carousel-buttons">
-                <button className="carousel-button" onClick={previousImage}>Previous</button>
-                <button className="carousel-button" onClick={nextImage}>Next</button>
+                <span className="carousel-prev" onClick={previousImage}>Previous</span>
+                <span className="carousel-next" onClick={nextImage}>Next</span>
             </div>
         </div>
     )

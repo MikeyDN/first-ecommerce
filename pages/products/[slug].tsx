@@ -3,7 +3,9 @@ import { Product } from '../../lib/types';
 import { client, urlFor } from '../../lib/client';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Carousel } from 'react-bootstrap';
+import Carousel from '../../components/Carousel';
+import { CartIcon } from '../../components/utils';
+import { Row, Col } from 'react-bootstrap';
 
 function ProductDisplay() {
     const [product, setProduct] = useState<Product>()
@@ -33,11 +35,17 @@ function ProductDisplay() {
             <h1>{product.name}</h1>
         </div>
 
-        <div className="product-display">
-            <img src={urlFor(product.image[0]).width(300).height(300).url()} alt="" />
-            <div className="product-details">
-            </div>
-        </div>
+        <Row className="product-display">
+            <Col md={3} className="product-image">
+                {/* <img src={urlFor(product.image[0]).width(300).height(300).url()} alt="" /> */}
+                <Carousel images={product.image} width={300} height={300} alt={product.name}/>
+            </Col>
+            <Col md={6} className="product-info">
+                    <div className="product-description">{product.description}</div>
+                    <div className="product-price">${product.price}</div>
+                    <CartIcon />
+            </Col>
+        </Row>
         </>
         )
     } else {
