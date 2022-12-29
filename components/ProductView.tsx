@@ -3,9 +3,10 @@ import { Container } from "react-bootstrap";
 import Link from "next/link";
 import { urlFor } from '../lib/client';
 import { Product } from '../lib/types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { CartIcon } from "./utils";
 import { fas } from '@fortawesome/free-solid-svg-icons';
+
 library.add(fas);
 type productViewProps = {
     product: Product
@@ -27,10 +28,7 @@ function ProductView(props: productViewProps){
                     
                     <Container className="price">
                         <div className="product-price">${props.product.price}</div>
-                        <div className="product-description">{props.product.description}</div>
-                        <button className="product-button">
-                            <FontAwesomeIcon icon={{ prefix: "fas", iconName: "shopping-cart" }} />
-                        </button>
+                        <CartIcon />
                     </Container>
                 </div>
             </div>
