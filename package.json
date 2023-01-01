@@ -24,6 +24,7 @@
     "@types/react-fontawesome": "^1.6.5",
     "bootstrap": "^5.2.3",
     "canvas-confetti": "^1.6.0",
+    "framer-motion": "^8.0.2",
     "jquery": "^3.6.2",
     "next": "13.0.7",
     "next-sanity-image": "^5.0.0",

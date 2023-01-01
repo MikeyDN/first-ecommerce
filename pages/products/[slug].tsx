@@ -8,6 +8,7 @@ import { CartIcon } from '../../components/utils';
 import { Row, Col } from 'react-bootstrap';
 import Image from 'next/image';
 import LoadingIcon from '../../components/LoadingIcon';
+import Layout from '../../components/Layout'
 
 function ProductDisplay() {
     const [product, setProduct] = useState<Product>()
@@ -36,54 +37,35 @@ function ProductDisplay() {
         <Head>
             <title>Buddy's e-Shop</title>
         </Head>
-        
+        <Layout>
         <div className='content-title'>
             <h1>{product.name}</h1>
         </div>
 
-        <Row className="product-display">
+        <div className="product-display">
             <div className = "carousel-container">
                 <Carousel>
                     {
                         product.image.map((image, index) => (
-                            <div>
-                                <Image 
-                                src={urlFor(image).width(300).height(300).url()}
-                                height={300}
-                                width={300}
-                                alt=''/>
+                            <div className='image-container'>
+                                <img src={urlFor(image).width(500).height(500).url()}/>
                             </div>
                         ))
                     }
                 </Carousel>
             </div>
-            <Col md={6} className="product-info">
+            <div className="product-info">
                     <div className="product-description">{product.description}</div>
                     <div className="product-payment">
                         <div className="product-price">${product.price}</div>
                         <CartIcon />
                     </div>
-            </Col>
-        </Row>
+            </div>
+        </div>
+        </Layout>
         </>
         )
-    } else {
-        return (
-            <>
-            <Head>
-                <title>Buddy's e-Shop</title>
-            </Head>
-            
-            <div className='content-title'>
-                <h1></h1>
-            </div>
-    
-            <div className="product-display">
-                <LoadingIcon />
-            </div>
-            </>
-        )
-    }
+    } else return <Layout><LoadingIcon /></Layout>
 }   
 
 type productDisplayProps = {

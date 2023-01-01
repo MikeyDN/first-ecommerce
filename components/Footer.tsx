@@ -6,11 +6,9 @@ function Footer(){
     return (<>
         <div className="footer">
             <Container>
-                <Row>
-                    <Col md={12}>
+            
                         <div className="logo"><img className="logo" src="/assets/images/buddys-logo.png" alt="website template image" /></div>
-                    </Col>
-                    <Col md={12}>
+                    
                         <div className="footer-menu">
                         <ul>
                             <li><a href="https://www.free-css.com/free-css-templates">Home</a></li>
@@ -20,8 +18,7 @@ function Footer(){
                             <li><a href="https://www.free-css.com/free-css-templates">Contact Us</a></li>
                         </ul>
                         </div>
-                    </Col>
-                    <Col md={12}>
+                    
                         <div className="social-icons">
                             <ul>
                                 <li><a href="https://www.free-css.com/free-css-templates"><i className="fa fa-facebook"></i></a></li>
@@ -30,8 +27,8 @@ function Footer(){
                                 <li><a href="https://www.free-css.com/free-css-templates"><i className="fa fa-rss"></i></a></li>
                             </ul>
                         </div>
-                    </Col>
-                </Row>
+                    
+                
             </Container>
         </div>
     </>

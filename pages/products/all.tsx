@@ -3,6 +3,7 @@ import { Product } from '../../lib/types';
 import { client } from '../../lib/client';
 import LoadingIcon from '../../components/LoadingIcon';
 import ProductView from '../../components/ProductView';
+import Layout from '../../components/Layout'
 
 const allProducts = () => {
     const [products, setProducts] = useState<Product[]|null>(null)
@@ -17,14 +18,16 @@ const allProducts = () => {
         fetchData()
     }, [])
 
-    if (products == null) return <LoadingIcon />
+    if (products == null) return <Layout><LoadingIcon /></Layout>
 
     return (
+      <Layout>
         <div className="product-list">
             {products.map((product: Product, index: number) => (
-              <ProductView product = { product } />
+              <ProductView product = { product } key={index}/>
             ))}
         </div>
+      </Layout>
       )
 }
 

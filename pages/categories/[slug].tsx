@@ -4,6 +4,8 @@ import { client } from '../../lib/client';
 import { Router, useRouter } from 'next/router';
 import Head from 'next/head';
 import ProductView from '../../components/ProductView';
+import Layout from '../../components/Layout'
+import { motion } from 'framer-motion'
 
 function CategoryView() {
     const [products, setProducts] = useState<Product[]>([])
@@ -30,7 +32,7 @@ function CategoryView() {
       <Head>
         <title>Buddy's e-Shop</title>
       </Head>
-      
+      <Layout>
         <div className='content-title'>
           <h1>{categoryName}</h1>
         </div>
@@ -39,7 +41,8 @@ function CategoryView() {
           {products.map((product: Product, key: number) => (
             <ProductView product = { product } key={key}/>
           ))}
-      </div>
+        </div>
+      </Layout>
       </>
     )
 }   

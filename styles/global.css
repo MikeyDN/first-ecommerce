@@ -1,3 +1,9 @@
+:root {
+    --primary: forestgreen;
+}
+html {
+    overflow-x: hidden;
+}
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -7,28 +13,23 @@ body {
     color: #212529;
     text-align: left;
     background-color: #fff;
+    overflow-x: hidden;
+    
   }
 #main {
     padding-top: 50px;
 }
 
-
-
-.carousel-container {
-    width: 300px;
-}
-.footer{
-    width: 100%;
-    text-align: center;
-    background-color: #272927;
-    margin-top: 100px;
+.navbar .container {
+    align-items: center;
+    flex-direction: column;
 }
 
-.footer.container {
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.navbar-nav {
+    align-items: center;
 }
+
+
 
 .product-box img {
     max-width: 100%;
@@ -47,6 +48,7 @@ body {
     margin: 8px 5px;
     border: 1px solid lightgray;
 }
+
 .product-list {
     display: flex;
     flex-direction: row;
@@ -70,7 +72,7 @@ body {
 
 }
 
-.categories-wrapper {
+.category-wrapper {
     margin: auto;
     display: flex;
     justify-content: center;
@@ -106,10 +108,35 @@ body {
     transition: 200ms;
 }
 
+.category-box-enter {
+    opacity: 0;
+}
+
+.category-box-enter-active {
+    opacity: 1;
+    transition: 200ms;
+}
+
+.category-box-exit {
+    transform: translateY(500);
+}
+
+.category-box-exit-active {
+    opacity: 1;
+    transition: 200ms;
+}
+
+
+
 .bg-dark {
-    background-color: forestgreen!important;
+    background-color: var(--primary)!important;
     border-bottom: 1px solid #eee;
     padding-bottom: 0;
+}
+
+
+.carousel-container {
+    margin-left:10vw;
 }
 
 .cart-icon {
@@ -133,11 +160,16 @@ body {
 .content-title {
     width: fit-content;
     margin: auto;
-    color: #51693a;
+    color: var(--primary);
 }
 
 .product-display {
+    display: flex;
     justify-content: space-around;
+}
+
+.product-list-item {
+    display: block;
 }
 
 .nav-link {
@@ -161,17 +193,7 @@ body {
     transition: all 0.5s ease;
 }
 
-.footer-menu ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 0;
-}
 
-.footer-menu ul li a{
-    color: #b0b2b4;
-}
 
 .social-icons ul {
     list-style: none;
@@ -197,10 +219,9 @@ body {
 }
 
 .product-payment {
-    position: absolute;
-    bottom: 0;
     display: flex;
 }
+
 
 
 @keyframes spin {
@@ -273,33 +294,56 @@ body {
 .logo {
     width: 80px;
     margin: auto;
-    margin-top: -15px;
 }
 
-.navbar .container {
-    align-items: center;
-    flex-direction: column;
-}
-
-.navbar-nav {
-    align-items: center;
-}
 
 .product-info {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: inherit;
+    align-content: space-between;
 }
 
+.product-description,
+.product-payment {
+    margin: 0 20%;
+}
+
+
+.thumbs-wrapper.axis-vertical {
+    display: none;
+    
+
+}
 .footer-menu {
     padding-top: 20px;
 }
 
-.thumbs-wrapper.axis-vertical {
-    display: none;
+.footer{
+    width: 100%;
+    text-align: center;
+    background-color: #272927;
+    margin-top: 100px;
 }
 
+.footer.container {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0;
+}
+
+.footer-menu ul li a{
+    color: #b0b2b4;
+}
 @media only screen and (max-width: 991.8px) {
     .product-list {
         display: flex;
@@ -310,6 +354,11 @@ body {
         flex-direction: row;
         height: 250px;
         width: 100%;
+    }
+
+    .product-display {
+        flex-wrap: wrap;
+        flex-direction: column;
     }
 
     .product-box img {
@@ -327,6 +376,11 @@ body {
         width: 100%;
     }
 
+    .product-description,
+    .product-payment {
+        margin: 10vh 5%;
+    }
+
     .price {
         height: 85%;
         align-items: flex-end;
@@ -341,5 +395,10 @@ body {
         position: relative;
     }
 
+
+    .carousel-container {
+        margin-left: 0;
+    }
+    
 }
 

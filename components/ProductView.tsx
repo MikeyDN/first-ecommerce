@@ -6,16 +6,18 @@ import { Product } from '../lib/types';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { CartIcon } from "./utils";
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { motion } from "framer-motion";
 
 library.add(fas);
 type productViewProps = {
     product: Product
+    key: number
 }
 
 function ProductView(props: productViewProps){
     const productUrl = `/products/${props.product.slug.current}`
     const imageUrl = urlFor(props.product.image[0]).width(300).height(300).fit('scale').url()
-    
+
     return (
         <div className="product-box">
                 <Link href={productUrl}>

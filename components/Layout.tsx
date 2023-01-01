@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
 import Header from './Header'
-import { Router } from 'next/router'
-function Layout(props: { children: any; }){
+import { motion } from 'framer-motion';
+function Layout(props: { children: any | null; }){
     return (<>
             <Header />
-                <div id="main">
+                <motion.div id="main"
+                    initial={{ x:300, opacity: 0}}
+                    animate={{ x:0, opacity: 1}}
+                    exit={{ x:300, opacity: 0}}>
+                    
                     { props.children }
-                </div>
+                </motion.div>
             <Footer />
             </>
     )
