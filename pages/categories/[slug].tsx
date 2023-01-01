@@ -1,7 +1,7 @@
 import { Component, useEffect, useState } from 'react'
 import { Product } from '../../lib/types';
 import { client } from '../../lib/client';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import Head from 'next/head';
 import ProductView from '../../components/ProductView';
 
@@ -24,24 +24,23 @@ function CategoryView() {
         }
         fetchProducts()
         fetchCategoryName()
-    }, [router.isReady])
+    }, [router.isReady, router.asPath])
 
-    return (
-        <>
+    return (<>
       <Head>
         <title>Buddy's e-Shop</title>
       </Head>
       
-      <div className='content-title'>
-        <h1>{categoryName}</h1>
-      </div>
+        <div className='content-title'>
+          <h1>{categoryName}</h1>
+        </div>
 
-      <div className="product-list">
-        {products.map((product: Product, key: number) => (
-          <ProductView product = { product } key={key}/>
-        ))}
+        <div className="product-list">
+          {products.map((product: Product, key: number) => (
+            <ProductView product = { product } key={key}/>
+          ))}
       </div>
-    </>
+      </>
     )
 }   
 

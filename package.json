@@ -32,6 +32,11 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react-transition-group": "^4.4.5",
     "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.5"
   }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Footer from './Footer'
 import Header from './Header'
-
+import { Router } from 'next/router'
 function Layout(props: { children: any; }){
     return (<>
             <Header />
@@ -9,7 +9,7 @@ function Layout(props: { children: any; }){
                     { props.children }
                 </div>
             <Footer />
-        </>
+            </>
     )
 }
 

@@ -12,6 +12,11 @@ body {
     padding-top: 50px;
 }
 
+
+
+.carousel-container {
+    width: 300px;
+}
 .footer{
     width: 100%;
     text-align: center;
@@ -65,8 +70,44 @@ body {
 
 }
 
+.categories-wrapper {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.category-box:first-of-type {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: 0;
+}
+
+.category-box:last-of-type {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: darkgrey 1px solid;
+}
+
+.category-box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: darkgrey 1px solid;
+    border-right:0;
+    text-align: center;
+    transition: 200ms;
+}
+
+.category-box:hover {
+    cursor: pointer;
+    background-color: darkgrey;
+    transition: 200ms;
+}
+
 .bg-dark {
-    background-color: #51693a!important;
+    background-color: forestgreen!important;
     border-bottom: 1px solid #eee;
     padding-bottom: 0;
 }
@@ -76,6 +117,7 @@ body {
     border-radius: 5px;
     height: 35px;
     width: 40px;
+    margin: 6px;
 }
 
 .price {
@@ -86,6 +128,7 @@ body {
 .product-price {
     font-size: x-large;
     height: fit-content;
+    padding: 5px;
 }
 .content-title {
     width: fit-content;
@@ -152,6 +195,13 @@ body {
     position: relative;
     top: 2px;
 }
+
+.product-payment {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+
 
 @keyframes spin {
     from {
@@ -239,33 +289,15 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 100%;
+    height: inherit;
 }
 
 .footer-menu {
     padding-top: 20px;
 }
 
-.carousel-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.carousel-next {
-    
-}
-
-.carousel-prev {
-
-}
-
-
-.carousel-next:hover {
-    cursor: pointer;
-}
-
-.carousel-prev:hover {
-    cursor: pointer
+.thumbs-wrapper.axis-vertical {
+    display: none;
 }
 
 @media only screen and (max-width: 991.8px) {
@@ -304,20 +336,10 @@ body {
         align-items: center;
         flex-direction: row;
     }
-/* 
-    .product-description {
-        display: block;
-        overflow-y: clip;
-        width: 75%;
-        height: 100%;
-        scroll-behavior: smooth;
-        border: 1px solid lightgray;
-        padding: 2px 16px;
-        border-radius: 12px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        
-    } */
+
+    .product-payment {
+        position: relative;
+    }
 
 }
 

@@ -1,30 +1,36 @@
-import { Component, useEffect, useState } from 'react'
-import { Product } from '../../lib/types';
+import React, { Component, useEffect, useState } from 'react';
+import { Product, Image as ImageType } from '../../lib/types';
 import { client, urlFor } from '../../lib/client';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Carousel from '../../components/Carousel';
+import { Carousel } from 'react-responsive-carousel';
 import { CartIcon } from '../../components/utils';
 import { Row, Col } from 'react-bootstrap';
+import Image from 'next/image';
+import LoadingIcon from '../../components/LoadingIcon';
 
 function ProductDisplay() {
     const [product, setProduct] = useState<Product>()
+    const [slug, setSlug] = useState<string>('')
     const router = useRouter();
-    const { slug } = router.query;
 
     useEffect(() => {
         if(!router.isReady) return;
-        const fetchProducts = async () => {
-            const result = await client.fetch(`*[_type == "product" &&  slug.current == "${slug}"]`)
+        var slug = router.query.slug as string
+        setSlug(slug)
+        // const fetchData = async () => {
+        //     const result = await client.fetch(`*[_type == "product" && slug.current == "${slug}"]`)
+        //     setProduct(result[0])
+        // }
+        // fetchData()
+        client.fetch(`*[_type == "product" && slug.current == "${slug}"]`).then((result) => {
             setProduct(result[0])
-          }
-        fetchProducts()
-        
-        
-    }, [router.isReady])
+            console.log(slug)
+        })
+    }, [router.isReady, router.asPath])
 
-
-    if (product){
+    
+    if (product) {
         return (
             <>
         <Head>
@@ -36,14 +42,27 @@ function ProductDisplay() {
         </div>
 
         <Row className="product-display">
-            <Col md={3} className="product-image">
-                {/* <img src={urlFor(product.image[0]).width(300).height(300).url()} alt="" /> */}
-                <Carousel images={product.image} width={300} height={300} alt={product.name}/>
-            </Col>
+            <div className = "carousel-container">
+                <Carousel>
+                    {
+                        product.image.map((image, index) => (
+                            <div>
+                                <Image 
+                                src={urlFor(image).width(300).height(300).url()}
+                                height={300}
+                                width={300}
+                                alt=''/>
+                            </div>
+                        ))
+                    }
+                </Carousel>
+            </div>
             <Col md={6} className="product-info">
                     <div className="product-description">{product.description}</div>
-                    <div className="product-price">${product.price}</div>
-                    <CartIcon />
+                    <div className="product-payment">
+                        <div className="product-price">${product.price}</div>
+                        <CartIcon />
+                    </div>
             </Col>
         </Row>
         </>
@@ -60,11 +79,15 @@ function ProductDisplay() {
             </div>
     
             <div className="product-display">
-                
+                <LoadingIcon />
             </div>
             </>
         )
     }
 }   
 
-export default ProductDisplay;
+type productDisplayProps = {
+    slug: string
+}
+
+export default ProductDisplay
