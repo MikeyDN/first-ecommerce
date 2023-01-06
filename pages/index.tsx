@@ -8,15 +8,13 @@ import { CSSTransition } from 'react-transition-group'
 import LoadingIcon from '../components/LoadingIcon'
 import { Carousel } from 'react-responsive-carousel'
 import { motion } from 'framer-motion'
-import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 function Home() {
-  const [promoted, setPromoted] = useState<Promoted[]|null>(null)
+  const [promoted, setPromoted] = useState<Promoted[] | null>(null)
   const [categories, setCateogories] = useState<Category[]>([])
   const router = useRouter()
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +27,7 @@ function Home() {
   }, [])
 
   if (promoted == null) {
-    return <Layout><LoadingIcon /></Layout>
-  }
-
-  if (promoted.length === 0) {
-    return <> No Promoted products </>
+    return
   }
 
   const handleClick = (slug: string) => {
@@ -48,31 +42,27 @@ function Home() {
       <Head>
         <title>Buddy's e-Shop</title>
       </Head>
-      <Layout>
-      <div className='promoted-wrapper'>
-        <div className='promoted-products'>
+      <div className="promoted-wrapper">
+        <div className="promoted-products">
           <Carousel>
-            {
-              promoted.map((promotedProduct) => (
-                <div>
-                  
-                </div>
-              ))
-            }
+            {promoted.map((promotedProduct) => (
+              <div></div>
+            ))}
           </Carousel>
         </div>
       </div>
-      <motion.div className='category-wrapper'>
-        {
-          categories.map((category, index) => (
-            <a className='category-box' onClick={handleClick(category.slug.current)} id={`#${category.slug.current}`}>
-              {category.name}
-            </a>
-          ))
-        }
-      </motion.div>
-      </Layout>
+      <div className="category-wrapper">
+        {categories.map((category, index) => (
+          <a
+            className="category-box"
+            onClick={handleClick(category.slug.current)}
+            id={`#${category.slug.current}`}
+          >
+            {category.name}
+          </a>
+        ))}
+      </div>
     </>
   )
 }
-export default Home;
+export default Home

@@ -8,12 +8,15 @@ export default function Document() {
         {/* <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> */}
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
+          rel="stylesheet"
+        />
       </Head>
-        <body>
+      <body>
         <Main />
         <NextScript />
-        </body>
+      </body>
     </Html>
   )
 }

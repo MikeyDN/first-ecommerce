@@ -1,38 +1,87 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react'
+import { Container } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faFacebook,
+  faTwitter,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons'
+import { faRss } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
-function Footer(){
-    return (<>
-        <div className="footer">
-            <Container>
-            
-                        <div className="logo"><img className="logo" src="/assets/images/buddys-logo.png" alt="website template image" /></div>
-                    
-                        <div className="footer-menu">
-                        <ul>
-                            <li><a href="https://www.free-css.com/free-css-templates">Home</a></li>
-                            <li><a href="https://www.free-css.com/free-css-templates">Help</a></li>
-                            <li><a href="https://www.free-css.com/free-css-templates">Privacy Policy</a></li>
-                            <li><a href="https://www.free-css.com/free-css-templates">How It Works ?</a></li>
-                            <li><a href="https://www.free-css.com/free-css-templates">Contact Us</a></li>
-                        </ul>
-                        </div>
-                    
-                        <div className="social-icons">
-                            <ul>
-                                <li><a href="https://www.free-css.com/free-css-templates"><i className="fa fa-facebook"></i></a></li>
-                                <li><a href="https://www.free-css.com/free-css-templates"><i className="fa fa-twitter"></i></a></li>
-                                <li><a href="https://www.free-css.com/free-css-templates"><i className="fa fa-linkedin"></i></a></li>
-                                <li><a href="https://www.free-css.com/free-css-templates"><i className="fa fa-rss"></i></a></li>
-                            </ul>
-                        </div>
-                    
-                
-            </Container>
-        </div>
+function Footer() {
+  return (
+    <>
+      <div className="footer">
+        <Container>
+          <div>
+            <img
+              className="logo"
+              style={{ marginTop: '-30px' }}
+              src="/assets/images/buddys-logo.png"
+              alt="website template image"
+            />
+          </div>
+
+          <div className="footer-menu">
+            <ul>
+              <li>
+                <a href="https://www.free-css.com/free-css-templates">Home</a>
+              </li>
+              <li>
+                <a href="https://www.free-css.com/free-css-templates">Help</a>
+              </li>
+              <li>
+                <a href="https://www.free-css.com/free-css-templates">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="https://www.free-css.com/free-css-templates">
+                  How It Works ?
+                </a>
+              </li>
+              <li>
+                <a href="https://www.free-css.com/free-css-templates">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="social-icons">
+            <ul>
+              <li>
+                <div>
+                  <Link href="/" className="media-link">
+                    <FontAwesomeIcon icon={faFacebook} />
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <Link href="/" className="media-link">
+                    <FontAwesomeIcon icon={faTwitter} />
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <Link href="/" className="media-link">
+                  <FontAwesomeIcon icon={faLinkedin} />
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="media-link">
+                  <FontAwesomeIcon icon={faRss} />
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </Container>
+      </div>
     </>
-    )
+  )
 }
 
-export default Footer;
+export default Footer
