@@ -6,15 +6,31 @@ import Head from 'next/head'
 import { Carousel } from 'react-responsive-carousel'
 import { AddToCartIcon } from '../../components/utils'
 import LoadingIcon from '../../components/LoadingIcon'
+import Image from 'next/image'
+import { url } from 'inspector'
+import { placements } from '@popperjs/core'
+
+type imageLoaderProps = {
+  image: ImageType
+  width: number
+  quality: number
+}
 
 function ProductDisplay() {
   const [product, setProduct] = useState<Product>()
   const [slug, setSlug] = useState<string>('')
   const router = useRouter()
+  const imageUrl = (image: ImageType) => {
+    return urlFor(image).width(1080).height(1080).url()
+  }
+  const imagePlaceHolder = (image: ImageType) => {
+    return urlFor(image).width(20).height(20).url()
+  }
 
   useEffect(() => {
     if (!router.isReady) return
     var slug = router.query.slug as string
+
     setSlug(slug)
     // const fetchData = async () => {
     //     const result = await client.fetch(`*[_type == "product" && slug.current == "${slug}"]`)
@@ -28,6 +44,10 @@ function ProductDisplay() {
         console.log(slug)
       })
   }, [router.isReady, router.asPath])
+
+  const imageLoader = (props: imageLoaderProps) => {
+    return urlFor(props.image).width(props.width).quality(props.quality).url()
+  }
 
   if (product) {
     return (
@@ -44,14 +64,14 @@ function ProductDisplay() {
             <Carousel>
               {product.image.map((image, index) => (
                 <div className="image-container">
-                  <img
+                  <Image
+                    src={imageUrl(image)}
+                    placeholder="blur"
+                    blurDataURL={imagePlaceHolder(image)}
+                    alt={product.name}
+                    fill
                     sizes="(max-width: 1080) 300px, 
                                             1080px"
-                    srcSet={`${urlFor(image).width(300).height(300).url()} 300w,
-                              ${urlFor(image)
-                                .width(1080)
-                                .height(1080)
-                                .url()} 1080w`}
                   />
                 </div>
               ))}

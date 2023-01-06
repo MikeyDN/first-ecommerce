@@ -332,10 +332,15 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .featured-image {
   position: relative;
   top: -35px;
+}
+
+.image-container {
+  width: 300px;
+  height: 300px;
+  position: relative;
 }
 
 .small-title {
@@ -449,6 +454,12 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+  }
+
+  .image-container {
+    width: 100vw;
+    height: 100vw;
+    position: relative;
   }
 
   .price {
