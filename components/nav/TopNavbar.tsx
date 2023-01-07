@@ -17,13 +17,13 @@ export default function TopNavbar() {
   return (
     <>
       <nav className="top-navbar">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" href="/">
           <img
             src="/assets/images/buddys-logo.png"
             className="logo"
             alt="website template image"
           />
-        </a>
+        </Link>
         <div className="navbar-links">
           <ul>
             <li>

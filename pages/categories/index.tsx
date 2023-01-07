@@ -34,6 +34,9 @@ function Home() {
       <Head>
         <title>Buddy's e-Shop</title>
       </Head>
+      <div className="content-title" style={{ paddingBottom: 20 }}>
+        <h1>All Categories</h1>
+      </div>
       <div className="category-wrapper">
         {categories.map((category, index) => (
           <a

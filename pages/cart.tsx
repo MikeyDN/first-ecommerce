@@ -6,8 +6,10 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { urlFor } from '../lib/client'
+import dynamic from 'next/dynamic'
 
-export default function cartPage() {
+function cartPageComponent() {
+  const [state, updateState] = useState(false)
   const {
     isEmpty,
     totalUniqueItems,
@@ -68,3 +70,4 @@ export default function cartPage() {
     </>
   )
 }
+export default dynamic(() => Promise.resolve(cartPageComponent), { ssr: false })

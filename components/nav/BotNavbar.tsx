@@ -25,7 +25,7 @@ function BotNavbar(props: { children: JSX.Element[] }) {
       '/products/all': 1,
       '/': 2,
       '/categories': 3,
-      '/contact': 4,
+      '/cart': 4,
     }
     const route = path as keyof typeof indexList
     if (route in indexList) setActiveIndex(indexList[route])
