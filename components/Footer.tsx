@@ -1,18 +1,32 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import BotNavbar from './nav/BotNavbar'
 import {
   faFacebook,
   faTwitter,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
-import { faRss } from '@fortawesome/free-solid-svg-icons'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import {
+  faHouse,
+  faCompass,
+  faCubesStacked,
+  faCircleQuestion,
+  faShoppingCart,
+  faRss,
+} from '@fortawesome/free-solid-svg-icons'
 
 function Footer() {
   return (
     <>
+      <BotNavbar>
+        <BotNavbar.Item href="/faq" icon={faCircleQuestion} />
+        <BotNavbar.Item href="/products/all" icon={faCompass} />
+        <BotNavbar.Item href="/" icon={faHouse} />
+        <BotNavbar.Item href="/categories" icon={faCubesStacked} />
+        <BotNavbar.Item href="/cart" icon={faShoppingCart} />
+      </BotNavbar>
       <div className="footer">
         <Container>
           <div>

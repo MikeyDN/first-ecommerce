@@ -3,20 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, fas } from '@fortawesome/free-solid-svg-icons'
 import { Product } from '../lib/types'
 import { useCart } from 'react-use-cart'
+import { urlFor } from '../lib/client'
 
 type productViewProps = {
   product: Product
 }
 export function AddToCartIcon(props: productViewProps) {
+  props.product.id = props.product.slug.current
   const { addItem } = useCart()
   const [, updateState] = useState()
   const forceUpdate = useCallback(() => updateState(undefined), [])
-  const item = {
-    id: props.product.slug.current,
-    name: props.product.name,
-    price: props.product.price,
-    quantity: 1,
-  }
   var isVisible = false
 
   const toggleVisibility = () => {
@@ -24,7 +20,7 @@ export function AddToCartIcon(props: productViewProps) {
   }
 
   const handleClick = () => {
-    addItem(item)
+    addItem(props.product)
     toggleVisibility()
     forceUpdate()
   }

@@ -32,22 +32,16 @@ function ProductDisplay() {
     var slug = router.query.slug as string
 
     setSlug(slug)
-    // const fetchData = async () => {
-    //     const result = await client.fetch(`*[_type == "product" && slug.current == "${slug}"]`)
-    //     setProduct(result[0])
-    // }
-    // fetchData()
-    client
-      .fetch(`*[_type == "product" && slug.current == "${slug}"]`)
-      .then((result) => {
-        setProduct(result[0])
-        console.log(slug)
-      })
+    const getData = async () => {
+      const result = await client.fetch(
+        `*[_type == "product" && slug.current == "${slug}"]`,
+      )
+      if (typeof result[0] === 'undefined') return
+      result[0].id = result[0]?.slug.current
+      setProduct(result[0])
+    }
+    getData()
   }, [router.isReady, router.asPath])
-
-  const imageLoader = (props: imageLoaderProps) => {
-    return urlFor(props.image).width(props.width).quality(props.quality).url()
-  }
 
   if (product) {
     return (
@@ -65,6 +59,7 @@ function ProductDisplay() {
               {product.image.map((image, index) => (
                 <div className="image-container">
                   <Image
+                    priority
                     src={imageUrl(image)}
                     placeholder="blur"
                     blurDataURL={imagePlaceHolder(image)}
