@@ -7,7 +7,6 @@ import Cart from './Cart'
 function Layout(props: { children: any | null }) {
   return (
     <>
-      <Header />
       <TopNavbar />
       {props.children}
       <Cart />
