@@ -20,15 +20,11 @@ function BotNavbar(props: { children: JSX.Element[] }) {
   const router = useRouter()
   const path = router.pathname
   const getActive = () => {
-    const indexList = {
-      '/about': 0,
-      '/products/all': 1,
-      '/': 2,
-      '/categories': 3,
-      '/cart': 4,
-    }
-    const route = path as keyof typeof indexList
-    if (route in indexList) setActiveIndex(indexList[route])
+    props.children.map((child: JSX.Element, index: number) => {
+      if (child.props.href === path) {
+        setActiveIndex(index)
+      }
+    })
   }
 
   useEffect(() => {
@@ -42,7 +38,7 @@ function BotNavbar(props: { children: JSX.Element[] }) {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [path])
 
   const handleClick = (index: number, href: string) => {
     router.push(href)

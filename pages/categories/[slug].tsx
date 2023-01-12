@@ -7,31 +7,35 @@ import ProductView from '../../components/ProductView'
 import Layout from '../../components/Layout'
 import { motion } from 'framer-motion'
 
-function CategoryView() {
-  const [products, setProducts] = useState<Product[]>([])
-  const [categoryName, setCategoryName] = useState<string>()
-  const router = useRouter()
-  const { slug } = router.query
+type PageProps = {
+  query: {
+    slug: string
+  }
+}
 
-  useEffect(() => {
-    if (!router.isReady) return
-    const fetchProducts = async () => {
-      const result = await client.fetch(
-        `*[_type == "product" && references(*[_type == "category" && slug.current == "${slug}"]._id)]`,
-      )
-      setProducts(result)
-    }
+export async function getServerSideProps(context: PageProps) {
+  const slug = context.query.slug
+  const products = await client.fetch(
+    `*[_type == "product" && references(*[_type == "category" && slug.current == "${slug}"]._id)]`,
+  )
+  const categoryName = await client.fetch(
+    `*[_type == "category" && slug.current == "${slug}"]{name}`,
+  )
+  return {
+    props: {
+      products,
+      categoryName: categoryName[0]?.name,
+    },
+  }
+}
 
-    const fetchCategoryName = async () => {
-      const result = await client.fetch(
-        `*[_type == "category" && slug.current == "${slug}"]{name}`,
-      )
-      setCategoryName(result[0]?.name)
-    }
-    fetchProducts()
-    fetchCategoryName()
-  }, [router.isReady, router.asPath])
-
+function CategoryView({
+  products,
+  categoryName,
+}: {
+  products: Product[]
+  categoryName: string
+}) {
   return (
     <>
       <Head>

@@ -1,48 +1,41 @@
 import React, { Component, useEffect, useState } from 'react'
 import { Product, Image as ImageType } from '../../lib/types'
 import { client, urlFor } from '../../lib/client'
-import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { Carousel } from 'react-responsive-carousel'
 import { AddToCartIcon } from '../../components/utils'
 import LoadingIcon from '../../components/LoadingIcon'
 import Image from 'next/image'
-import { url } from 'inspector'
-import { placements } from '@popperjs/core'
+import { AppContext } from 'next/app'
 
-type imageLoaderProps = {
-  image: ImageType
-  width: number
-  quality: number
+type PageProps = {
+  query: {
+    slug: string
+  }
 }
 
-function ProductDisplay() {
-  const [product, setProduct] = useState<Product>()
-  const [slug, setSlug] = useState<string>('')
-  const router = useRouter()
+type Products = Product[]
+
+export const getServerSideProps = async (context: PageProps) => {
+  const slug = context.query.slug
+  const products: Products = await client.fetch(
+    `*[_type == "product" && slug.current == "${slug}"]`,
+  )
+  return {
+    props: {
+      product: products[0],
+    },
+  }
+}
+
+export default function ProductDisplay({ product }: { product: Product }) {
   const imageUrl = (image: ImageType) => {
     return urlFor(image).width(1080).height(1080).url()
   }
   const imagePlaceHolder = (image: ImageType) => {
     return urlFor(image).width(20).height(20).url()
   }
-
-  useEffect(() => {
-    if (!router.isReady) return
-    var slug = router.query.slug as string
-
-    setSlug(slug)
-    const getData = async () => {
-      const result = await client.fetch(
-        `*[_type == "product" && slug.current == "${slug}"]`,
-      )
-      if (typeof result[0] === 'undefined') return
-      result[0].id = result[0]?.slug.current
-      setProduct(result[0])
-    }
-    getData()
-  }, [router.isReady, router.asPath])
-
   if (product) {
     return (
       <>
@@ -86,8 +79,3 @@ function ProductDisplay() {
     )
   } else return <LoadingIcon />
 }
-type productDisplayProps = {
-  slug: string
-}
-
-export default ProductDisplay

@@ -1,6 +1,6 @@
 import { Slug } from '@sanity/types'
 
-export interface Product {
+export type Product = {
   name: string
   image: Image[]
   slug: {

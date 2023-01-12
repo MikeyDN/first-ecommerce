@@ -21,11 +21,11 @@ function Footer() {
   return (
     <>
       <BotNavbar>
-        <BotNavbar.Item href="/faq" icon={faCircleQuestion} />
-        <BotNavbar.Item href="/products/all" icon={faCompass} />
         <BotNavbar.Item href="/" icon={faHouse} />
-        <BotNavbar.Item href="/categories" icon={faCubesStacked} />
+        <BotNavbar.Item href="/products/all" icon={faCompass} />
         <BotNavbar.Item href="/cart" icon={faShoppingCart} />
+        <BotNavbar.Item href="/categories" icon={faCubesStacked} />
+        <BotNavbar.Item href="/faq" icon={faCircleQuestion} />
       </BotNavbar>
       <div className="footer">
         <Container>
