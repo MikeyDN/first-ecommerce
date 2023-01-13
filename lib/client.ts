@@ -1,6 +1,6 @@
 import sanityClient from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
-import { Image } from './types'
+import { SanityImage } from './types'
 
 export const client = sanityClient({
   projectId: '1u3avr4h',
@@ -12,4 +12,4 @@ export const client = sanityClient({
 
 const builder = imageUrlBuilder(client)
 
-export const urlFor = (source: Image) => builder.image(source)
+export const urlFor = (source: SanityImage) => builder.image(source)

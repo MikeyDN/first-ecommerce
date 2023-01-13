@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Product } from '../../lib/types'
-import { client } from '../../lib/client'
-import LoadingIcon from '../../components/LoadingIcon'
 import ProductView from '../../components/ProductView'
-import { motion } from 'framer-motion'
+import { getProducts } from '../../lib/cache'
 
-const allProducts = () => {
-  const [products, setProducts] = useState<Product[] | null>(null)
+export async function getServerSideProps(context: any) {
+  const products: Product[] = await getProducts()
+  return {
+    props: {
+      products,
+    },
+  }
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await client.fetch(`*[_type == "product"]`)
-      setProducts(result)
-    }
-    fetchData()
-  }, [])
-
+const allProducts = ({ products }: { products: Product[] }) => {
   if (products == null) return
 
   return (

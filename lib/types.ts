@@ -1,8 +1,6 @@
-import { Slug } from '@sanity/types'
-
 export type Product = {
   name: string
-  image: Image[]
+  image: SanityImage[]
   slug: {
     current: string
     _type: string
@@ -12,7 +10,7 @@ export type Product = {
   categories: string[]
   description: string
 }
-export type Image = {
+export type SanityImage = {
   asset: {
     url: string
   }
@@ -25,15 +23,13 @@ export type Image = {
 }
 export type Category = {
   name: string
-  slug: {
-    current: string
-    _type: string
-  }
+  slug: string
+  products: Product[]
 }
 
 export type Promoted = {
   smallTitle: string
   title: string
   product: Product
-  image: Image
+  image: SanityImage
 }

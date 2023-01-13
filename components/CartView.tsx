@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faAdd, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { AnimatePresence, motion, useDragControls } from 'framer-motion'
 import { PanInfo } from 'framer-motion'
+import CartTotal from './CartTotal'
+import { calculateShipping } from '../lib/shipping'
 
 export default function CartView() {
   const {
@@ -18,9 +20,10 @@ export default function CartView() {
 
   const controls = useDragControls()
 
+  const shippingCost = calculateShipping('IL')
+
   const remove = (slug: string) => {
     return (event: PointerEvent, info: PanInfo) => {
-      console.log(info.offset.x)
       if (info.offset.x < -100) {
         removeItem(slug)
       }
@@ -29,8 +32,8 @@ export default function CartView() {
 
   return (
     <>
-      <h1>Cart ({totalUniqueItems})</h1>
       <div className="cart-items">
+        <h1>Cart ({totalUniqueItems})</h1>
         <ul>
           <AnimatePresence mode="sync" initial={false}>
             {items.map((item, index) => (
@@ -38,14 +41,13 @@ export default function CartView() {
                 key={item.slug.current}
                 itemID={item.slug.current}
                 id={item.slug.current}
-                initial={{ x: 0, scale: 1 }}
                 animate={{ x: 0, scale: 1 }}
                 exit={{ x: -1000, y: -10, scale: 0 }}
                 transition={{ duration: 0.4 }}
                 drag="x"
                 dragControls={controls}
                 onDragEnd={remove(item.slug.current)}
-                dragConstraints={{ left: 100, right: 0 }}
+                dragConstraints={{ left: 0, right: 0 }}
               >
                 <div style={{ display: 'flex' }}>
                   <div className="cart-item-image">
@@ -93,6 +95,7 @@ export default function CartView() {
           </AnimatePresence>
         </ul>
       </div>
+      <CartTotal />
     </>
   )
 }

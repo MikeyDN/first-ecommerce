@@ -1,11 +1,9 @@
 import { Component, useEffect, useState } from 'react'
-import { Product } from '../../lib/types'
+import { Category, Product } from '../../lib/types'
 import { client } from '../../lib/client'
-import { Router, useRouter } from 'next/router'
+import { getCategory, getProduct } from '../../lib/cache'
 import Head from 'next/head'
 import ProductView from '../../components/ProductView'
-import Layout from '../../components/Layout'
-import { motion } from 'framer-motion'
 
 type PageProps = {
   query: {
@@ -14,28 +12,16 @@ type PageProps = {
 }
 
 export async function getServerSideProps(context: PageProps) {
-  const slug = context.query.slug
-  const products = await client.fetch(
-    `*[_type == "product" && references(*[_type == "category" && slug.current == "${slug}"]._id)]`,
-  )
-  const categoryName = await client.fetch(
-    `*[_type == "category" && slug.current == "${slug}"]{name}`,
-  )
+  const { slug } = context.query
+  const category: Category = await getCategory(slug)
   return {
     props: {
-      products,
-      categoryName: categoryName[0]?.name,
+      category,
     },
   }
 }
 
-function CategoryView({
-  products,
-  categoryName,
-}: {
-  products: Product[]
-  categoryName: string
-}) {
+function CategoryView({ category }: { category: Category }) {
   return (
     <>
       <Head>
@@ -43,11 +29,11 @@ function CategoryView({
       </Head>
 
       <div className="content-title">
-        <h1>{categoryName}</h1>
+        <h1>{category.name}</h1>
       </div>
 
       <div className="product-list">
-        {products.map((product: Product, key: number) => (
+        {category.products.map((product: Product, key: number) => (
           <ProductView product={product} key={key} />
         ))}
       </div>

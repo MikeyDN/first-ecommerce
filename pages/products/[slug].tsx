@@ -1,13 +1,12 @@
 import React, { Component, useEffect, useState } from 'react'
-import { Product, Image as ImageType } from '../../lib/types'
+import { Product, SanityImage } from '../../lib/types'
 import { client, urlFor } from '../../lib/client'
-import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { Carousel } from 'react-responsive-carousel'
 import { AddToCartIcon } from '../../components/utils'
 import LoadingIcon from '../../components/LoadingIcon'
 import Image from 'next/image'
-import { AppContext } from 'next/app'
+import { getProduct } from '../../lib/cache'
 
 type PageProps = {
   query: {
@@ -15,25 +14,21 @@ type PageProps = {
   }
 }
 
-type Products = Product[]
-
 export const getServerSideProps = async (context: PageProps) => {
   const slug = context.query.slug
-  const products: Products = await client.fetch(
-    `*[_type == "product" && slug.current == "${slug}"]`,
-  )
+  const product: Product = await getProduct(slug)
   return {
     props: {
-      product: products[0],
+      product,
     },
   }
 }
 
 export default function ProductDisplay({ product }: { product: Product }) {
-  const imageUrl = (image: ImageType) => {
+  const imageUrl = (image: SanityImage) => {
     return urlFor(image).width(1080).height(1080).url()
   }
-  const imagePlaceHolder = (image: ImageType) => {
+  const imagePlaceHolder = (image: SanityImage) => {
     return urlFor(image).width(20).height(20).url()
   }
   if (product) {

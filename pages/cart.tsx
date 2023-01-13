@@ -6,26 +6,7 @@ import CartView from '../components/CartView'
 import Link from 'next/link'
 
 function cartPageComponent() {
-  const [state, updateState] = useState(false)
-  const {
-    isEmpty,
-    totalUniqueItems,
-    items,
-    updateItemQuantity,
-    removeItem,
-    cartTotal,
-    emptyCart,
-    totalItems,
-  } = useCart()
-
-  const calculateShipping = (destination: string) => {
-    // TODO: add shipping calculation
-    if (destination === 'IL') {
-      return 0
-    } else {
-      return 20
-    }
-  }
+  const { totalItems } = useCart()
 
   return (
     <>

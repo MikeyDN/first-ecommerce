@@ -61,6 +61,7 @@ function BotNavbar(props: { children: JSX.Element[] }) {
       >
         {props.children.map((child: JSX.Element, index: number) => (
           <div
+            key={index}
             className={isActive(index)}
             onClick={() => {
               handleClick(index, child.props.href)

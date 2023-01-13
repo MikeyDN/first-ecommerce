@@ -1,26 +1,16 @@
 import { useCart } from 'react-use-cart'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import CartView from './CartView'
-import { urlFor } from '../lib/client'
 
 export default function Cart() {
-  const nodeRef = useRef(null)
   const [showPopup, setShowPopup] = useState(false)
   const [showCart, setShowCart] = useState(false)
 
-  const {
-    isEmpty,
-    totalUniqueItems,
-    items,
-    updateItemQuantity,
-    removeItem,
-    cartTotal,
-  } = useCart()
+  const { cartTotal } = useCart()
 
   useEffect(() => {
     if (cartTotal > 0) {
