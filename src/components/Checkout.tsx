@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import { useCart } from 'react-use-cart'
 import { useRouter } from 'next/router'
 import { Modal, Button } from 'react-bootstrap'
-import CartView from './CartView'
+import captchaClient from '../lib/captcha'
 
 export default function Checkout({ destination }: { destination: string }) {
   const { addItem, removeItem, emptyCart, cartTotal } = useCart()
@@ -13,6 +13,7 @@ export default function Checkout({ destination }: { destination: string }) {
   const [show, setShow] = useState(false)
   const [err, setErr] = useState('')
   const [isSent, setIsSent] = useState(false)
+  const [userResponse, setUserResponse] = useState('')
   const router = useRouter()
 
   const handleClose = () => setShow(false)
@@ -25,7 +26,7 @@ export default function Checkout({ destination }: { destination: string }) {
       <div className="checkout-container">
         <div className="checkout-form">
           <h1>Checkout</h1>
-          <form onSubmit={sendOrder}>
+          <form onSubmit={sendOrder} action="#">
             <input
               type="email"
               name="email"
@@ -53,6 +54,14 @@ export default function Checkout({ destination }: { destination: string }) {
               placeholder="Phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+            />
+            <input
+              name="g-recaptcha-response"
+              type="hidden"
+              value=""
+              onChange={(e) => {
+                setUserResponse(e.target.value)
+              }}
             />
             <button type="submit">Submit</button>
           </form>

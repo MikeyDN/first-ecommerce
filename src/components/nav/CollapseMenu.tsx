@@ -35,9 +35,19 @@ function CollapseMenu(props: {
         <motion.div
           className="collapse-menu"
           key="collapse-menu"
-          initial={{ scale: 2, opacity: 0, y: props.children.length * -20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0, opacity: 0, y: props.children.length * -25 }}
+          initial={{ scaleY: 0, opacity: 0, y: props.children.length * -25 }}
+          animate={{
+            scaleY: 1,
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.2 },
+          }}
+          exit={{
+            scaleY: 0,
+            opacity: 0,
+            y: props.children.length * -25,
+            transition: { duration: 0.2 },
+          }}
           id={props.id}
         >
           <ul>{props.children}</ul>
